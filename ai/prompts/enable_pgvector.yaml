@@ -1,0 +1,8 @@
+name: enable_pgvector
+model: any
+description: Aktiver pgvector og lag docs-tabell med embedding.
+prompt: |
+  Lag migrasjon (Postgres) som gjør:
+  - CREATE EXTENSION IF NOT EXISTS vector;
+  - Opprett public.docs(id uuid pk, content text not null, embedding vector(1536));
+  - Opprett ivfflat-index på embedding med lists=100 (egen fil hvis CONCURRENTLY brukes).
