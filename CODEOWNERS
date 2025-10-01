@@ -1,4 +1,4 @@
 * @NORSAIN-AI/norsain-supabase-db
-supabase/migrations/ @NORSAIN-AI/db-reviewers
-supabase/seeds/ @NORSAIN-AI/db-reviewers
-
+* @hs
+/supabase/migrations/ @hs
+/supabase/seeds/      @hs
