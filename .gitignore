@@ -142,3 +142,8 @@ vite.config.ts.timestamp-*
 supabase/.temp
 supabase/.dev
 supabase/.branches
+*.log
+
+# OS/editor
+.DS_Store
+.vscode/
