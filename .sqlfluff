@@ -1,0 +1,6 @@
+[sqlfluff]
+dialect = postgres
+
+[sqlfluff:rules]
+L010 = warn   # keywords uppercase
+L016 = ignore # linjelengde, ignorer
