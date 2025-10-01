@@ -1,23 +1,12 @@
-# NORSAIN – Copilot-instrukser (repo-omfattende)
-
-**Kontekst**
-- Dette repoet inneholder Supabase/Postgres: migrasjoner (DDL), seeds (DML), RLS, webhooks/outbox.
-- Dialekt: PostgreSQL. RLS fra dag 1. Forward-only migrasjoner.
-
-**Navngiving**
-- Migrasjoner: `YYYYMMDDHHMMSS_beskrivelse.sql` i `supabase/migrations/`.
-- Seeds per miljø: `supabase/seeds/{dev|stage|prod}/seed.sql` som inkluderer andre filer.
-
-**Regler**
-- Én logisk endring per migrasjonsfil.
+# NORSAIN – Copilot-instrukser (repo)
+- Stack: Supabase/Postgres. RLS fra dag 1. Forward-only migrasjoner.
+- Navn: `YYYYMMDDHHMMSS_beskrivelse.sql` i `supabase/migrations/`.
+- Seeds per miljø: `supabase/seeds/{dev|stage|prod}/seed.sql` inkluderer `00_ref_data.sql`, `01_dev_user.sql` osv.
 - Zero-downtime: expand → backfill → switch → contract.
-- Unngå transaksjon rundt `CREATE INDEX CONCURRENTLY` og enkelte `ALTER TYPE`.
-- Idempotente seeds (ON CONFLICT DO NOTHING).
+- Ikke transaksjon på `CREATE INDEX CONCURRENTLY` / enkelte `ALTER TYPE`.
 
-**Bygg/test**
-- Lokal: `supabase start`, `supabase db reset`, `supabase studio`.
-- CI kjører lint/test og `supabase db push`.
-
-**Når du genererer kode**
-- Bruk Postgres-syntaks, eksplisitte kolonner (unngå `SELECT *` i prod).
-- Legg korte kommentarer i toppen: hva/hvorfor.
+Lokal:
+```bash
+supabase start
+supabase db reset
+supabase studio
