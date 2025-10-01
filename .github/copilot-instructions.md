@@ -10,3 +10,13 @@ Lokal:
 supabase start
 supabase db reset
 supabase studio
+---
+**`/.github/instructions/db.instructions.md`**
+```md
+---
+applies-to: "supabase/**"
+---
+- Bruk Postgres-dialekt.
+- En endring per migrasjon. Extensions/indekser i egne filer ved behov.
+- RLS/policies eksplisitte. Seeds idempotente.
+- Unngå `SELECT *` i prod-eksempler.
