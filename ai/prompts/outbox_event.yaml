@@ -1,0 +1,6 @@
+name: outbox_event
+model: any
+description: Outbox-mønster for webhooks (DB → MCP).
+prompt: |
+  Lag migrasjon som oppretter public.event_outbox(id uuid pk, topic text, payload jsonb, created_at timestamptz default now(), status text default 'pending', attempts int default 0).
+  Lag trigger på public.docs AFTER INSERT som skriver topic 'doc.created' m/ payload {id, created_by}.
