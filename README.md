@@ -42,12 +42,43 @@ psql -U postgres -d norsain -f examples/setup_triggers.sql
 
 #### Start serveren
 
+**Med Node.js:**
 ```bash
 # Produksjon
 npm start
 
 # Utvikling (med auto-restart)
 npm run dev
+```
+
+**Med Docker Compose:**
+```bash
+# Start både WebSocket-server og PostgreSQL
+docker-compose up -d
+
+# Se logger
+docker-compose logs -f websocket-server
+
+# Stopp tjenester
+docker-compose down
+```
+
+**Med Docker (kun WebSocket-server):**
+```bash
+# Bygg image
+docker build -t norsain-websocket .
+
+# Kjør container
+docker run -d \
+  --name norsain-websocket \
+  -p 8080:8080 \
+  -e POSTGRES_HOST=your-postgres-host \
+  -e POSTGRES_PORT=5432 \
+  -e POSTGRES_DB=norsain \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=your-password \
+  -e NOTIFICATION_CHANNELS=db_changes,table_updates \
+  norsain-websocket
 ```
 
 Serveren vil starte på `ws://localhost:8080` (eller den konfigurerte porten).
@@ -118,12 +149,32 @@ ws.run_forever()
 
 ### Testing
 
+**Automatisk test:**
+```bash
+# Start serveren i en terminal
+npm start
+
+# Kjør tester i en annen terminal
+npm test
+```
+
+**Manuell testing med HTML-klient:**
+
 Bruk den inkluderte HTML-testklienten for å teste serveren:
 
 1. Start serveren: `npm start`
 2. Åpne `examples/test-client.html` i en nettleser
 3. Klikk "Connect" for å koble til serveren
 4. Abonner på kanaler og gjør database-endringer for å se notifikasjoner
+
+**Testing med websocat:**
+```bash
+# Installer websocat
+brew install websocat  # macOS
+
+# Koble til og send kommandoer
+echo '{"type":"subscribe","channel":"db_changes"}' | websocat ws://localhost:8080
+```
 
 ### PostgreSQL LISTEN/NOTIFY
 
@@ -171,6 +222,12 @@ Miljøvariabler i `.env`:
 - `WS_PORT`: WebSocket server port (standard: 8080)
 - `WS_HOST`: WebSocket server host (standard: 0.0.0.0)
 - `NOTIFICATION_CHANNELS`: Kommaseparert liste over kanaler å lytte på
+
+### WebSocket API
+
+For detaljert informasjon om WebSocket API-et, se [WEBSOCKET_API.md](WEBSOCKET_API.md).
+
+Eksempler på meldingsformater og klient-implementasjoner finner du i dokumentasjonen.
 
 ### Sikkerhet
 
