@@ -1,1 +1,22 @@
+name: "Webhook/Outbox Request"
+description: "Be om ny hendelse eller endring i event_outbox-kontrakten"
+title: "[WEBHOOK] <kort tittel>"
+labels: ["webhook","design-review"]
+body:
+  - type: input
+    id: topic
+    attributes: { label: Topic-navn, placeholder: "doc.created" }
+    validations: { required: true }
+  - type: textarea
+    id: contract
+    attributes: { label: Kontrakt (payload), render: json, placeholder: "{ \"id\": \"uuid\" }" }
+    validations: { required: true }
+  - type: checkboxes
+    id: delivery
+    attributes:
+      label: Levering
+      options:
+        - label: "Retry/backoff"
+        - label: "Konsumert av MCP-server"
+        - label: "Audit-logging"
 
