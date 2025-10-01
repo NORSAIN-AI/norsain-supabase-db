@@ -1,0 +1,31 @@
+{
+  "name": "norsain-supabase-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for NORSAIN MAS agents to access Supabase database",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "norsain-supabase-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "supabase",
+    "mas",
+    "agents"
+  ],
+  "author": "NORSAIN-AI",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@supabase/supabase-js": "^2.39.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.3.0"
+  }
+}

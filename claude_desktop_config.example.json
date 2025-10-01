@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "norsain-supabase": {
+      "command": "node",
+      "args": [
+        "/absolute/path/to/norsain-supabase-db/dist/index.js"
+      ],
+      "env": {
+        "SUPABASE_URL": "https://your-project.supabase.co",
+        "SUPABASE_KEY": "your-supabase-anon-or-service-role-key"
+      }
+    }
+  }
+}
