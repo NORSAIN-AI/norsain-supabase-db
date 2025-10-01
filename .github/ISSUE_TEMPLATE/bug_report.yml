@@ -1,0 +1,59 @@
+name: "Bug report"
+description: "Rapporter feil i migrasjoner, seeds, RLS eller webhooks"
+title: "[BUG] <kort tittel>"
+labels: ["bug","needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: "## Takk! Fyll ut så presist som mulig – hjelper oss å fikse raskt."
+  - type: input
+    id: area
+    attributes:
+      label: Berørt område
+      description: "f.eks. migrations | seeds | RLS | webhooks | tests"
+      placeholder: "migrations"
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Miljø
+      placeholder: "dev / stage / prod"
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduksjon
+      description: "Steg-for-steg som utløser bugen"
+      value: |
+        1.
+        2.
+        3.
+        ...
+      render: bash
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Forventet vs. faktisk
+      placeholder: "Hva forventet du, og hva skjedde?"
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Feilmeldinger / EXPLAIN / logs
+      description: "Lim inn relevante biter (masker sensitive data)."
+      render: text
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Sjekkliste
+      options:
+        - label: "Har testet lokalt med `supabase db reset`"
+          required: true
+        - label: "CI-feilen kan reproduseres"
+        - label: "Ingen secrets i beskrivelsen"
