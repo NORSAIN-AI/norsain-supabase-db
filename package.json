@@ -1,0 +1,24 @@
+{
+  "name": "norsain-supabase-db-websocket",
+  "version": "1.0.0",
+  "description": "WebSocket server for real-time Postgres changes in NORSAIN MAS",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "websocket",
+    "postgres",
+    "realtime",
+    "supabase"
+  ],
+  "author": "NORSAIN-AI",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.16.0",
+    "pg": "^8.11.3",
+    "dotenv": "^16.4.1"
+  }
+}
