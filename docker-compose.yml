@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  websocket-server:
+    build: .
+    container_name: norsain-websocket-server
+    ports:
+      - "${WS_PORT:-8080}:8080"
+    environment:
+      - POSTGRES_HOST=${POSTGRES_HOST:-postgres}
+      - POSTGRES_PORT=${POSTGRES_PORT:-5432}
+      - POSTGRES_DB=${POSTGRES_DB:-norsain}
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - WS_PORT=8080
+      - WS_HOST=0.0.0.0
+      - NOTIFICATION_CHANNELS=${NOTIFICATION_CHANNELS:-db_changes,table_updates}
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    networks:
+      - norsain-network
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: norsain-postgres
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:-norsain}
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./examples/setup_triggers.sql:/docker-entrypoint-initdb.d/setup_triggers.sql
+    restart: unless-stopped
+    networks:
+      - norsain-network
+
+networks:
+  norsain-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
