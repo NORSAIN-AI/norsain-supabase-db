@@ -1,0 +1,13 @@
+name: create_users_table
+model: any
+description: Opprett users-tabell med RLS og eier-policy.
+inputs:
+  - key: table
+    default: public.users
+prompt: |
+  Skriv en Supabase/Postgres migrasjon i SQL som oppretter {{table}}:
+  - id uuid default gen_random_uuid() primary key
+  - email text unique not null
+  - created_at timestamptz default now()
+  Aktiver RLS og lag policy som tillater SELECT/UPDATE/DELETE kun for auth.uid() = id.
+  Inkluder korte kommentarer øverst (hva/hvorfor).
