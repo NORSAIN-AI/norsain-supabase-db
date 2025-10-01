@@ -1,0 +1,11 @@
+{
+  "topic": "doc.created",
+  "payload": {
+    "id": "uuid",
+    "created_by": "uuid"
+  },
+  "metadata": {
+    "occurred_at": "timestamp",
+    "source": "supabase-db"
+  }
+}
