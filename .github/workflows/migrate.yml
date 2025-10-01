@@ -9,5 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # TODO: auth via OIDC + hent SUPABASE_DB_URL_*
-      - run: echo "supabase db push kommer her når secrets er på plass"
+      - run: echo "TODO: supabase db push via OIDC + Secret Manager"
