@@ -8,6 +8,6 @@ jobs:
   migrate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       # TODO: auth via OIDC + hent SUPABASE_DB_URL_*
       - run: echo "supabase db push kommer her når secrets er på plass"
