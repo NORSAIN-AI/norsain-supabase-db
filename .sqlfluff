@@ -1,6 +1,8 @@
 [sqlfluff]
 dialect = postgres
+max_line_length = 120
 
 [sqlfluff:rules]
-L010 = warn   # keywords uppercase
-L016 = ignore # linjelengde, ignorer
+L009 = error   ; forby SELECT *
+L010 = warn    ; keywords uppercase
+L016 = ignore  ; ikke straff lang linje
